@@ -20,10 +20,10 @@
 
 [//]: # (Image References)
 
-[rock_images]: ./misc/rock_test_images.jpg
-[rock_images_thresh]: ./misc/rock_test_thresh.jpg
-[mask_image]: ./misc/mask_image.jpg
-[obstacle_thresh]: ./misc/obstacle_thresh.jpg
+[rock_images]: ./misc/rock_test_images.JPG
+[rock_images_thresh]: ./misc/rock_test_thresh.JPG
+[mask_image]: ./misc/mask_image.JPG
+[obstacle_thresh]: ./misc/obstacle_thresh.JPG
 [forward]: ./misc/forwardmode.png
 [rock]: ./misc/I-FoundRock.png
 [pickup]: ./misc/picking-up.png
