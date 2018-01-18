@@ -28,6 +28,8 @@
 [rock]: ./misc/I-FoundRock.png
 [pickup]: ./misc/picking-up.png
 [turning]: ./misc/turning.png
+[goal]: ./misc/goalComplete.png
+
 
 ## [Rubric](https://review.udacity.com/#!/rubrics/916/view) Points
 ### Here I will consider the rubric points individually and describe how I addressed each point in my implementation.  
@@ -107,13 +109,18 @@ And another!
 ![alt text][forward]
 
 ![alt text][pickup]
-rover mode is `Stop`, it just breaks. Then, evaluate if there is navigable terrain (`nav.angles > 500`) it goes forward, if there is not navigable terrain (`nav.angles > 500`), it turns 15 degrees.
+	- If rover mode is `Stop`, it just breaks. Then, evaluate if there is navigable terrain (`nav.angles > 500`) it goes forward, if there is not navigable terrain (`nav.angles > 500`), it turns 15 degrees.
 ![alt text][turning]
 
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 	- The rover maps 40% of the environment with more than 60% of fidelity.
-	- The rover locate and pick up more than one rock. However, it takes too much time to pick up all the rocks and fidelity is affected.
-	- Fidelity could be improved working with a range of roll and pitch, because  terrain is not flat and perception is affected.
+
+![alt text][turning] 
+
+	- The rover locate and pick up more than one rock. However, it takes too much time to pick up all the rocks and
+	 fidelity is affected.
+	- Fidelity could be improved working with a range of roll and pitch, because  terrain is not flat and 
+	perception is affected.
 	- There are situations when the rover turns in circles for a long time.
 
 **Note: running the simulator with different choices of resolution and graphics quality may produce different results, particularly on different machines!  Make a note of your simulator settings (resolution and graphics quality set on launch) and frames per second (FPS output to terminal by `drive_rover.py`) in your writeup when you submit the project so your reviewer can reproduce your results.**
