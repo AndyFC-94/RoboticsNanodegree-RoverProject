@@ -2,7 +2,9 @@
 ---
 ### Useful links
 [Youtube Video - Rover Autonomous Mode](https://www.youtube.com/watch?v=paQpnF8RNOM&feature=youtu.be)
+
 [Output Test](../output/test_mapping.mp4)
+
 [JupyterNotebook](../code/Rover_Project_Test_Notebook.ipynb)
 
 **The goals / steps of this project are the following:**  
