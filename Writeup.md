@@ -1,6 +1,9 @@
 ## Project: Search and Sample Return
 ---
-
+### Useful links
+[Youtube Video - Rover Autonomous Mode](https://www.youtube.com/watch?v=paQpnF8RNOM&feature=youtu.be)
+[Output Test](../output/test_mapping.mp4)
+[JupyterNotebook](../code/Rover_Project_Test_Notebook.ipynb)
 
 **The goals / steps of this project are the following:**  
 
@@ -44,11 +47,13 @@ You're reading it!
 ### Notebook Analysis
 #### 1. Run the functions provided in the notebook on test images (first with the test data provided, next on data you have recorded). Add/modify functions to allow for color selection of obstacles and rock samples.
 
-##### rock_samples
+##### ROCK_SAMPLES
 	  - I worked with an interactive matplotlib window to find a range of RGB values for yellow rocks. 
-	  - I found that values for R are normally higher than 130. Values for G are higuer than 110 and values for B are less than 50.
+	  - I found that values for R are normally higher than 130. Values for G are higuer than 110 and values
+	   for B are less than 50.
 	  - I tested all the images below.
 ![alt text][rock_images]
+
       - I defined rock_thresh and I could thresholding yellow rocks.
  ```python
       def rock_thresh(img, rgb_thresh=(130, 105, 50)):
@@ -61,7 +66,7 @@ You're reading it!
  ```
 ![alt text][rock_images_thresh]
 
-##### obstacles
+##### OBSTACLES
 	  - For the obstacles, first I define a mask in perspective_transform function.
 	  - I combine this mask with ground thresholing to obtain the obstacles thresholding.
 	  - To create a mask, I get an array of ones from img[:,:,0] and then I apply perspective transform.
@@ -83,27 +88,35 @@ obs_map=np.absolute(np.float32(threshed_obs)-1)*mask
 
 
 #### 1. Populate the `process_image()` function with the appropriate analysis steps to map pixels identifying navigable terrain, obstacles and rock samples into a worldmap.  Run `process_image()` on your test data using the `moviepy` functions provided to create video output of your result. 
-And another! 
 
-	- Call the `perspective_transform()` function to get a sky view (warped) and get a mask from this view using the same perspective
-	transform technique to  a single layer image of ones. 
+For process_image() function, I follow the steps below.
+
+	- Call the `perspective_transform()` function to get a sky view (warped) and get a mask from this view 
+	using the same perspective transform technique to  a single layer image of ones. 
 	- Get navigable terrain through `color_thresh()`function. 
 	- Get obstacle terraing through the mask obtained from the previous step.
-	- Get rover coordinates of transformed navigable terraing and obstacle terrain . 
+	- Get rover coordinates of transformed navigable terrain and obstacle terrain . 
 	- Convert this rover coordinates to world_map coordinates.
-	- Update `data.worldmap` with navigable terrain (blue layer) and obstacle terrain (red layer) world pixels with one layer for each one. If there is navigable terrain (`pixel values > 1`), I set obstacle terrain to `0`.
-	- Find yellow rocks with `rock_thresh()`function. If there are rocks, update `data.worldmap[]` in the green layer.
+	- Update `data.worldmap` with navigable terrain (blue layer) and obstacle terrain (red layer) world pixels 
+	with one layer for each one. If there is navigable terrain (`pixel values > 1`), I set obstacle terrain to `0`.
+	- Find yellow rocks with `rock_thresh()`function. If there are rocks, update `data.worldmap[]` in the green 
+	layer.
 
 ### Autonomous Navigation and Mapping
 
 #### 1. Fill in the `perception_step()` (at the bottom of the `perception.py` script) and `decision_step()` (in `decision.py`) functions in the autonomous mapping scripts and an explanation is provided in the writeup of how and why these functions were modified as they were.
 
 ##### Perception Step
-	- The `perception_step()` is the same as the jupyter notebook functions. When the rover find a rock, I update the rover mode to `I found a rock` mode.
+	- The `perception_step()` is the same as the jupyter notebook functions. When 
+	the rover find a rock, I update the rover mode to `I found a rock` mode.
 
 ##### Decision Step
 	- Here, I defined  the conditions for three rover modes : `I found a rock`, `Forward`, `Stop`
-	- If the rover mode is `I found a rock`, it will reduce the throttle to 0.2 or 0 (depends of the current velocity), set rover.brake to 0 and set rover.steer with the correct angles. So, when the rover is near to a rock, it breaks and pick up the rock. Then, the rover mode is update to `Stop`.
+	- If the rover mode is `I found a rock`, it will reduce the throttle to 0.2 or 0 (it depends 
+	of the current velocity), set rover.brake to 0 and set rover.steer with the correct angles. 
+	So, when the rover is near to a rock, it breaks and pick up the rock. Then, the rover 
+	mode is update to `Stop`.
+
 ![alt text][rock]
 	- If the rover mode is `Forward`, the rover evaluate two possibilities. If rover.nav_angles is greater than 50 (if there is navigable terrain), the rover goes forward. If there is not navigable terrain, the rover breaks and goes to `Stop`mode.
 ![alt text][forward]
@@ -117,8 +130,8 @@ And another!
 
 ![alt text][goal] 
 
-	- The rover locate and pick up more than one rock. However, it takes too much time to pick up all the rocks and
-	 fidelity is affected.
+	- The rover locate and pick up more than one rock. However, it takes too much time to pick up all the 
+	rocks and fidelity is affected.
 	- Fidelity could be improved working with a range of roll and pitch, because  terrain is not flat and 
 	perception is affected.
 	- There are situations when the rover turns in circles for a long time.
