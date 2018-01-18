@@ -115,7 +115,7 @@ And another!
 #### 2. Launching in autonomous mode your rover can navigate and map autonomously.  Explain your results and how you might improve them in your writeup.  
 	- The rover maps 40% of the environment with more than 60% of fidelity.
 
-![alt text][turning] 
+![alt text][goal] 
 
 	- The rover locate and pick up more than one rock. However, it takes too much time to pick up all the rocks and
 	 fidelity is affected.
